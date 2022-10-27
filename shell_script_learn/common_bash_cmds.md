@@ -21,6 +21,15 @@ sudo du -h -s .[^.]* | sort -h
 find <dir> -iname <file name>
 # e.g. find ~ -iname <*.txt> show all the full paths of file with extension .txt
 ```
+## Find a file based on content
+```bash
+find . -type f -exec grep "content to match" '{}' \; -print
+# Goes thru all files in current dir (.) of type file (-type f) greps the content and prints. The curly braces ({}) are a placeholder for those results matched by the Linux find command. The {} go inside single quotes (‘) so that grep isn’t given a misshapen file name. The -exec command is ended with a semicolon (;), which also needs an escape (\;) so that it doesn’t end up being interpreted by the shell.
+
+find . -type f -print | xargs grep "forinstance"
+# Another option but using xargs
+```
+
 ## ps
 Process status, information about processes running in memory.
 [more info](https://ss64.com/bash/ps.html)
